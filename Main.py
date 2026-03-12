@@ -5,15 +5,13 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import mysql.connector
-import smtplib
-from email.mime.text import MIMEText
 from PIL import Image, ImageTk
 
 # ------------------- Database Setup -------------------
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'Rajitha@1',
+    'password': '******',
     'database': 'telemedicines'
 }
 
@@ -22,23 +20,6 @@ try:
     cursor = db.cursor()
 except Exception as e:
     print("DB Connection Failed:", e)
-
-# ------------------- Email Notification -------------------
-def send_email(to_email, subject, message):
-    try:
-        from_email = "telemedicine103@gmail.com"
-        from_password = "datascience123"  # Use a secure App Password from Gmail
-
-        msg = MIMEText(message)
-        msg['Subject'] = subject
-        msg['From'] = from_email
-        msg['To'] = to_email
-
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(from_email, from_password)
-            server.send_message(msg)
-    except Exception as e:
-        print("Email error:", e)
 
 # ------------------- AI Symptom Checker -------------------
 def suggest_doctor(symptom):
@@ -243,3 +224,4 @@ def show_report_and_availability(username):
 # ------------------- App Start -------------------
 login_page()
 root.mainloop()
+
